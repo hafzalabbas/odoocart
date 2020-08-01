@@ -18,17 +18,25 @@
 
 
 
-                               <tr style="background-color:#e9ecef;">
+                               <tr t-attf-class="{{'thead-light' if not groupby == 'none' else ''}}" style="background-color:#e9ecef;">
 
                             <t t-set="credittotal" t-value="0"/>
                             <t t-set="sale" t-value="0"/>
                             <t t-set="sheet" t-value="timesheets.project_id.id"/>
+                                   <t t-set="sale_id" t-value="timesheets.project_id.sale_order_id.id"/>
                             <t t-set="sum" t-value="0.0"/>
 
+                                   <t t-foreach="request.env['sale.order'].search(['|',('id','=',sale_id),('project_id','=',sheet)])" t-as="sale_lines">
+                                                                  <t t-foreach="sale_lines.order_line" t-as="sale_line">
 
-                           <t t-foreach="timesheets.project_id.sale_order_id.order_line" t-as="sale_line">
                                         <t t-set="sale" t-value="sale + sale_line.product_uom_qty" />
+                                                                  </t>
                             </t>
+
+
+                           <!--<t t-foreach="timesheets.project_id.sale_order_id.order_line" t-as="sale_line">-->
+                                        <!--<t t-set="sale" t-value="sale + sale_line.product_uom_qty" />-->
+                            <!--</t>-->
                            <t t-set="credittotal" t-value="sum(l.unit_amount for l in request.env['account.analytic.line'].search([('task_id','!=',False),('project_id','=',sheet)]))"/>
 
                                  <!--<t t-esc="sum(l.unit_amount for l in request.env['account.analytic.line'].search([('task_id','!=',False),('project_id','=',sheet)]))"  t-options='{"widget":"float_time", "unit": "hour", "round": "minute"}'/>-->
@@ -46,17 +54,26 @@
                             </tr>
 
 
-                      <tr style="background-color:#e9ecef;">
+                      <tr t-attf-class="{{'thead-light' if not groupby == 'none' else ''}}" style="background-color:#e9ecef;">
 
                             <t t-set="credittotal" t-value="0"/>
                             <t t-set="sale" t-value="0"/>
                             <t t-set="sheet" t-value="timesheets.project_id.id"/>
+                             <t t-set="sale_id" t-value="timesheets.project_id.sale_order_id.id"/>
                             <t t-set="sum" t-value="0.0"/>
 
+                                   <t t-foreach="request.env['sale.order'].search(['|',('id','=',sale_id),('project_id','=',sheet)])" t-as="sale_lines">
+                                                                  <t t-foreach="sale_lines.order_line" t-as="sale_line">
 
-                           <t t-foreach="timesheets.project_id.sale_order_id.order_line" t-as="sale_line">
                                         <t t-set="sale" t-value="sale + sale_line.product_uom_qty" />
+                                                                  </t>
                             </t>
+
+
+
+                           <!--<t t-foreach="timesheets.project_id.sale_order_id.order_line" t-as="sale_line">-->
+                                        <!--<t t-set="sale" t-value="sale + sale_line.product_uom_qty" />-->
+                            <!--</t>-->
                            <t t-set="credittotal" t-value="sum(l.unit_amount for l in request.env['account.analytic.line'].search([('task_id','!=',False),('project_id','=',sheet)]))"/>
 
                                  <!--<t t-esc="sum(l.unit_amount for l in request.env['account.analytic.line'].search([('task_id','!=',False),('project_id','=',sheet)]))"  t-options='{"widget":"float_time", "unit": "hour", "round": "minute"}'/>-->
@@ -75,17 +92,26 @@
 
                             </tr>
 
-                               <tr style="background-color:#e9ecef;">
+                               <tr t-attf-class="{{'thead-light' if not groupby == 'none' else ''}}" style="background-color:#e9ecef;">
 
                             <t t-set="credittotal" t-value="0"/>
                             <t t-set="sale" t-value="0"/>
                             <t t-set="sheet" t-value="timesheets.project_id.id"/>
+                             <t t-set="sale_id" t-value="timesheets.project_id.sale_order_id.id"/>
                             <t t-set="sum" t-value="0.0"/>
 
+                                   <t t-foreach="request.env['sale.order'].search(['|',('id','=',sale_id),('project_id','=',sheet)])" t-as="sale_lines">
+                                                                  <t t-foreach="sale_lines.order_line" t-as="sale_line">
 
-                           <t t-foreach="timesheets.project_id.sale_order_id.order_line" t-as="sale_line">
                                         <t t-set="sale" t-value="sale + sale_line.product_uom_qty" />
+                                                                  </t>
                             </t>
+
+
+
+                           <!--<t t-foreach="timesheets.project_id.sale_order_id.order_line" t-as="sale_line">-->
+                                        <!--<t t-set="sale" t-value="sale + sale_line.product_uom_qty" />-->
+                            <!--</t>-->
                            <t t-set="credittotal" t-value="sum(l.unit_amount for l in request.env['account.analytic.line'].search([('task_id','!=',False),('project_id','=',sheet)]))"/>
 
                                  <!--<t t-esc="sum(l.unit_amount for l in request.env['account.analytic.line'].search([('task_id','!=',False),('project_id','=',sheet)]))"  t-options='{"widget":"float_time", "unit": "hour", "round": "minute"}'/>-->
